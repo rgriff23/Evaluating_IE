@@ -21,11 +21,11 @@ We dedicate plenty of space to discussing the problems of IE in our manuscript, 
 
 IE is a tree-traversal algorithm that supposedly produces amazingly accurate estimates of ancestral states and branch-specific rates of change for a given phylogeny and trait data. The algorithm involves 8 steps, and is described in Smaers and Vinicus (2009) as follows:
 
-![](./figures/IE_algorithm.tiff "Figure 1: IE algorithm")
+![](./figures/IE_algorithm.png)
 
 Here is a visual depiction of the IE algorithm taken directly from Smaers and Vinicius (2009):
 
-![](./figures/IE_algorithm_visual.tiff "Figure 2: IE algorithm diagram")
+![](./figures/IE_algorithm_visual.png)
 
 Applying IE to a phylogeny and dataset involves two steps: First, "adaptive peaks" are calculated for all the internal nodes of the tree, where the "adaptive peak" at a node is defined as the phylogenetically weighted average at that node when the phylogeny is re-rooted at the node in question. Second, the phylogeny is traversed and "*R*-values" and ancestral states are computed for branches and internal nodes as described in the 8-step algorithm. The *R*-values are considered by Smaers and Vinicius (2009) to represent "branch-specific rates of change". 
 
@@ -37,7 +37,7 @@ After much thought and discussion, Gabe and I distilled various issues with the 
 
 1. **The "IE distance metric" is a transformation designed to account for proportional change, but it introduces biases because the function asymptotes at +/-2.** In Smaers et al. (2012), the authors write that the IE distance metric has "equivalent properties to the log-scale" (p. 18010), but this is not true. The following figure compares the IE distance metric to taking the difference between logged values (a sensible way to account for traits that scale proportionally), and demonstrates that IE always underestimates proportional change, and the problem gets worse when changes are large.
 
-![](./figures/Distance_metrics.tiff "Figure 3: IE distance metric vs. log transformation")
+![](./figures/Distance_metrics.png)
 
 2. **The IE distance metric is embedded in the IE algorithm, such that even if trait data do not require transformation, they are automatically transformed.** Specifically, IE assumes that the variance of the trait increases (and non-linearly) with the mean. Since IE assumes the data follow a distribution that requires transformation, this assumption should hold for any data that is analyzed with the method. However, the authors of IE do not highlight this assumption, and the method has used with data that clearly violate it, such as the prinicipal components scores in Kivell et al. (2013). 
 
@@ -53,7 +53,7 @@ After much thought and discussion, Gabe and I distilled various issues with the 
 
 7. **The definition of "adaptive peaks" makes no theoretical sense.** In fact, it seems that the recovery of an "adaptive peak" in the example provided by Smaers and Vinicius (2009) is essentially a byproduct of transforming data mid-way through the algorithm and introducing bias with the IE distance metric. To demonstrate this, we worked through the same example, except we log transformed data prior to analysis and used an appropriate distance metric (log(a) - log(b)) in step 5 of the algorithm. We found that after implementing these changes, the "adaptive peak" and the ancestral state were identical (in our manuscript, we also provide an algebraic proof to demonstrate that this MUST be true whenever the branch lengths leading to sister taxa are identical and the "adaptive peak" lies between the values of the sister taxa).
 
-![](./figures/IE_modified.tiff)
+![](./figures/IE_modified.png)
 
 8. **When branch-specific changes for one trait are regressed against those of a second trait, contrary to the claims of Smaers et al. (2012), the results do not provide any information that could not be gleaned from a standard phylogenetic regression.** Recent application of IE reveals a serious misinterpretation of the linear regression slope estimated for two sets of IE "branch-specific rates of change". Specifically, Smaers et al. (2012) argue that the null expectation for this regression slope should be 1, claiming that an allometric scaling relationship will “collapse” into the line *y* = *x* when rates of change between data points are plotted rather than the data points themselves. They then interpret deviations from the line *y* = *x* as providing novel insights to the evolutionary process leading to observed trait covariation across the phylogeny. In our manuscript, we discuss the problems with this argument in depth, but here I will simply say this: The expectation for the regression slope for a pair of IE "branch-specific rates of change" is not 1; rather, it is simply the regression slope for those two traits from a standard phylogenetic regression! In other words, regressing one set of IE "branch-specific rates of change" against another simply estimates the phylogenetic regression slope, albeit not as well as traditional methods. But don't take my word for it- check out the simulations.
 
@@ -63,7 +63,7 @@ After much thought and discussion, Gabe and I distilled various issues with the 
 
 We used the `phytools` package (Revell 2013) to simulate the evolution of 1000 proportionally scaling traits on a primate phylogeny from 10kTrees (Arnold et al., 2010). Here is the phylogeny with labeled branches:
 
-![](./figures/Phylogeny.tiff)
+![](./figures/Phylogeny.png)
 
 On a log scale, the simulated traits are normally distributed with a mean of 0 and a standard deviation of 1. For each simulated trait, we used the IE algorithm to compute ancestral states for each node, standardized directional contrasts for each branch (measured as the value of the descendant minus the ancestor, divided by the square root of the branch length), and *R*-values for each branch. As required by the IE algorithm, proportionally scaling traits were not transformed in prior to analysis with IE.
 
@@ -73,19 +73,19 @@ In order to compare ancestral state estimates from IE and PIDC, we log transform
 
 Our simulations supported our predictions. The following figure shows the distribution of ancestral state estimates across nodes of the tree, with nodes ordered by their distance from the root (nodes on the leftmost side of the plots are near the root, and nodes on the right are near the tips). 
 
-![](./figures/Ancestral_states.tiff)
+![](./figures/Ancestral_states.png)
 
 Clearly, IE systematically overestimates ancestral states, and this problem is most extreme for nodes deeper in the tree. 
 
 We also investigated the distribution of estimated "branch-specific rates of change" for each branch of the phylogeny, considering both standardized directional contrasts and *R*-values. The following figure depicts these distributions:
 
-![](./figures/Branch_rates.tiff)
+![](./figures/Branch_rates.png)
 
 PIDC estimates of branch-specific change are evenly distributed across a mean of zero (larger standard deviations are associated with short branches). In contrast, IE estimates show a strong negative bias that increases near the root of the tree. This is expected given the upward bias in ancestral state estimates; overestimated ancestral states near the root correspond to a negative bias in changes along branches near the root. The results for *R*-values are much more variable, with some branches having a positive bias and others having a negative bias, and the overall magnitude of *R*-values decreasing towards the tips of the tree. 
 
 Closer inspection of *R*-values on individual branches of the tree reveal erratic patterns and very little correspondence to the simulated evolutionary changes along those branches. The following plot depicts the relationship between *R*-values and simulated changes along select branches of the phylogeny.
 
-![](./figures/Accuracy_Rvalues.tiff)
+![](./figures/Accuracy_Rvalues.png)
 
 Taken together, these results support our prediction that IE estimates of ancestral states and branch-specific changes (as measured by standardized directional contrasts) show systematic biases, essentially reflecting a model of evolution where trait values decrease in both their mean and variance through evolutionary time. *R*-values behave erratically and are very poorly correlated with branch-specific changes. 
 
@@ -95,7 +95,7 @@ We simulated the evolution of 500 pairs of correlated traits, incrementing the s
 
 All of our traits were simulated with the same evolutionary model, and the only source of variation between simulations was the correlation coefficient between the two traits. Thus, if regressing IE branch-specific changes from one trait against another captures something about the evolutionary process that is independent of the underlying correlation between the two traits (as argued by Smaers et al., 2012), the regression slopes for all the IE analyses should be identical (and according to Smaers et al., 2012, they should all be ~1). In fact, comparing the estimated regression slopes with simulated correlation coefficients supports our prediction that all three methods (PIC, PIDC, and IE) estimate the same parameter: the evolutionary correlation between the two traits!
 
-![](./figures/Correlations.tiff)
+![](./figures/Correlations.png)
 
 Although IE regression does not estimate the correlation coefficient as accurately as PIC or PIDC (both IE standardized directional contrasts and R-values tend to overestimate the correlation at lower values and underestimate it at higher values), it is clearly closely related to the underlying evolutionary correlation between those two traits. 
 

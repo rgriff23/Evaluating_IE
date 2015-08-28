@@ -1,3 +1,8 @@
 
 # ignore html files
 *.html
+
+# ignore R history files
+*.Rhistory
+*.Rapp.history
+
