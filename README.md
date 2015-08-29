@@ -2,9 +2,11 @@
 
 [Randi H. Griffin]() and [Gabriel S. Yapuncich](http://www.gabrielyapuncich.com/)
 
+\* RHG and GSY designed the study and co-authored the manuscript. RHG wrote the R code and authored the GitHub synopsis (although a fair amount of technical text was copied directly from our manuscript).
+
 ___
 
-This repository contains the data and code used to evaluate the legitimacy of IE using simulations. I also provide a synopsis of our study. A complete manuscript is out for review as of May 2015. 
+This repository contains the data and code used to evaluate the legitimacy of IE using simulations. I (Randi Griffin) also provide a synopsis of our study. A manuscript is out for review as of May 2015. 
 
 ## Manuscript
 
@@ -56,3 +58,4 @@ One of these is a function for the IE method, `IEalgorithm.R`, which I programme
 
 - Smaers JB, Vinicius L. Inferring macro-evolutionary patterns using an adaptive peak model of evolution. Evol Ecol Res. 2009;11: 991-1015.
 
+---
