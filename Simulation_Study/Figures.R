@@ -8,6 +8,9 @@
 # Load packages
 library(ape)
 
+# In case user is running windows and can't use quartz 
+if(.Platform$OS.type=="windows") {quartz<-function() windows()}
+
 ###############################################################################################################
 # Plot the primate phylogeny with labeled branches
 ###############################################################################################################
