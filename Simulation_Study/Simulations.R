@@ -9,7 +9,7 @@ library(adephylo)
 library(phytools)
 
 # Set working directory
-setwd('~/Desktop/Evaluating_IE/Simulation_Study')
+setwd('~/Desktop/GitHub/Evaluating_IE/Simulation_Study')
 
 # Load functions
 invisible(sapply(list.files('./functions', full.names=TRUE), source))

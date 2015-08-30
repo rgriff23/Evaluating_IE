@@ -1,7 +1,8 @@
-
 # SYNOPSIS: The Independent Evolution method is not a viable phylogenetic comparative method
 
-[Randi Griffin]() and [Gabriel Yapuncich](http://www.gabrielyapuncich.com/)
+[Randi H. Griffin]() and [Gabriel S. Yapuncich](http://www.gabrielyapuncich.com/)
+
+* RHG authored this synopsis
 
 ___
 
