@@ -102,9 +102,7 @@ Although IE regression does not estimate the correlation coefficient as accurate
 
 ## Conclusions
 
-The IE method is both theoretically and empirically problematic. When data are simulated under a Brownian motion model, the method produces severely biased estimates of ancestral states and changes along individual branches. Furthermore, when IE estimated branch-specific changes are regressed against one another, they simply estimate that regression coefficient for the two traits and do not provide any novel insight into evolutionary processes. 
-
-Given the extent of the problems we uncovered and the lack of a coherent theoretical foundation for the method, we see no way for it to be salvaged with revisions. It is time the nonsense stopped.
+The IE method is both theoretically and empirically problematic. When data are simulated under a Brownian motion model, the method produces severely biased estimates of ancestral states and changes along individual branches. Furthermore, when IE estimated branch-specific changes are regressed against one another, they simply estimate that regression coefficient for the two traits and do not provide any novel insight into evolutionary processes. Given the extent of the problems we uncovered and the lack of a coherent theoretical foundation for the method, we see no way for it to be salvaged with revisions.
 
 ## References
 
