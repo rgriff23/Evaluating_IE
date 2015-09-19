@@ -1,3 +1,6 @@
+---
+output: word_document
+---
 # SYNOPSIS: The Independent Evolution method is not a viable phylogenetic comparative method
 
 [Randi H. Griffin]() and [Gabriel S. Yapuncich](http://www.gabrielyapuncich.com/)
@@ -8,7 +11,7 @@ ___
 
 ## Introduction
 
-In 2009, Smaers and Vinicius introduced a phylogenetic comparative method called Independent Evolution (IE), which aims to estimate ancestral states and rates of evolution given a phylogenetic tree and trait data at the tips. Purportedly, the method can also model the coevolution of pairs of traits more effectively than traditional methods (Smaers and Vinicius, 2009). Since its introduction, the method has been employed in numerous studies, mostly on the topic of human and primate evolution (Smaers et al., 2011; Smaers et al., 2012; Smaers et al., 2013; Smaers and Soligo, 2013; Tsegai et al., 2013; Kivell et al., 2013; Goswami et al., 2014). 
+In 2009, Smaers and Vinicius introduced a phylogenetic comparative method called Independent Evolution (IE), which aims to estimate ancestral states and rates of evolution given a phylogenetic tree and trait data at the tips. Purportedly, the method can also model the coevolution of pairs of traits more effectively than traditional methods (Smaers and Vinicius, 2009). Since its introduction, the method has been employed in numerous studies, mostly on the topic of human and primate morphological evolution (Smaers et al., 2011; Smaers et al., 2012; Smaers et al., 2013; Smaers and Soligo, 2013; Tsegai et al., 2013; Kivell et al., 2013; Goswami et al., 2014). 
 
 In 2014, my collaborator (Gabe) and I (Randi) read one of these papers, and we thought the method seemed fishy. Indeed, upon closer inspection, we found that IE makes virtually no theoretical sense and performs very poorly when evaluated with simulations. Although Smaers and Vinicius (2009) claim that IE produces identical results to a Brownian motion model of evolution when the assumptions of that model are met, by testing the IE method with data simulated under Brownian motion, we found that this is far from true. 
 
@@ -43,8 +46,6 @@ After much thought and discussion, Gabe and I distilled various issues with the 
 2. **The IE distance metric is embedded in the IE algorithm, such that even if trait data do not require transformation, they are automatically transformed.** Specifically, IE assumes that the variance of the trait increases (and non-linearly) with the mean. Since IE assumes the data follow a distribution that requires transformation, this assumption should hold for any data that is analyzed with the method. However, the authors of IE do not highlight this assumption, and the method has used with data that clearly violate it, such as the prinicipal components scores in Kivell et al. (2013). 
 
 3. **The formulas used in steps 6 and 7 of the IE algorithm are non-sensical.** In steps 6 and 7, "*T*-distances" are calculated from the triangle vertices to the centroid, and are then related to the triangle sides, or "*S*-distances". This is probably the silliest problem with IE because it doesn't really make sense to do either of those things in the first place, but our point is that even if it did make sense, they are doing it wrong. You can't use Ptolemy's triangle inequality to compute distances to the triangle centroid, you need [Apollonius' theorem](https://en.wikipedia.org/wiki/Median_%28geometry%29#Formulas_involving_the_medians.27_lengths) for that (use Apollonius' theorem to compute the triangle median lengths, then multiply by 2/3 to get the distances to the centroid). Further, step 7 of the IE algorithm says that each *S*-distance is equal to the sum of the *T*-distances it forms a triangle with, but if that is true, then the triangle formed by the *S*-distance and *T*-distances must have an area of 0!
-
-  ![](./figures/Picard-Facepalm.jpg)
 
 4. **R-values are not evolutionary rates.** Given phenetic distance *T* between an ancestor and descendant, and branch length *b* connecting them, the average rate of change along the branch could be computed as *T/b*. In comparison, Step 8 of the IE algorithm multiplies *T*-distances by the quantity 2\**b*1/(*b*1 + *b*2), where *b*1 and *b*2 are branch lengths leading from the ancestral node to sister descendants. It is unclear why this particular equation is used to scale *T*-values, but we see no justification for interpreting the resulting *R*-value as as a rate of evolutionary change. Given that the *S*-distances and *T*-distances upon which the *R*-values are based are problematic due to the inappropriate formulas used to compute them, it is very difficult to say what the *R*-values represent. As we will demonstrate in the simulations, *R*-values are very poorly correlated with true branch-specific rates of change and exhibit unusual distributions.
 
