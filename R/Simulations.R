@@ -8,8 +8,8 @@ library(ape)
 library(adephylo)
 library(phytools)
 
-# Set working directory
-setwd('~/Desktop/GitHub/Evaluating_IE/Simulation_Study')
+# Set working directory (this will be different on your computer)
+setwd('~/Desktop/GitHub/Evaluating_IE/R/')
 
 # Load functions
 invisible(sapply(list.files('./functions', full.names=TRUE), source))
