@@ -1,18 +1,12 @@
 # Evaluating the legitimacy of the Independent Evolution method
 
-[Randi H. Griffin]() and [Gabriel S. Yapuncich](http://www.gabrielyapuncich.com/)
-
-\* RHG and GSY designed the study and co-authored the manuscript. RHG wrote the R code and authored the GitHub synopsis (although a fair amount of technical text was copied directly from our manuscript).
+[Randi H. Griffin](http://rgriff23.github.io/) and [Gabriel S. Yapuncich](http://www.gabrielyapuncich.com/)
 
 ___
 
-This repository contains the data and code used to evaluate the legitimacy of IE using simulations. I (Randi Griffin) also provide a synopsis of our study. A manuscript is out for review as of May 2015. 
+This repository contains the data and code used to evaluate the legitimacy of IE using simulations. I also provide a synopsis of our study on my [website](http://rgriff23.github.io/ie.html). A manuscript is out for review as of May 2015. 
 
-## Synopsis
-
-`Synopsis.md` is a synopsis of our study. The **figures** folder contains the figures that are included in the synopsis.
-
-## Simulation_Study
+## Reproducible simulation study
 
 The **R** folder contains the data and R code needed to replicate our simulation study. Several R packages must be installed for this code to work.
 
@@ -39,8 +33,6 @@ For the impatient, the workspace `Simulations.Rdata` contains processed simulati
 load("Simulations.Rdata")
 source("Figures.R")
 ```
-
-### Functions
 
 The **R/functions** folder contains a number of functions for analyzing and processing simulation output. These functions are automatically loaded by the code in `Simulations.R`. 
 
