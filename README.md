@@ -4,7 +4,7 @@
 
 ___
 
-This repository contains the data and code used to evaluate the legitimacy of IE using simulations. I also provide a synopsis of our study on my [website](http://rgriff23.github.io/ie.html). A manuscript is out for review as of May 2015. 
+This repository contains the data and code used to evaluate the legitimacy of IE using simulations. I also provide a synopsis of our study on my [website](http://rgriff23.github.io/projects/ie.html). A manuscript is out for review as of May 2015. 
 
 ## Reproducible simulation study
 
