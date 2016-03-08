@@ -4,7 +4,7 @@
 
 ___
 
-This repository contains the data and code used to evaluate the legitimacy of IE using simulations. I also provide a synopsis of our study on my [website](http://rgriff23.github.io/projects/ie.html). A manuscript is out for review as of May 2015. 
+This repository contains the data and code used to evaluate the legitimacy of IE using simulations. I also provide a synopsis of our study on my [website](http://rgriff23.github.io/projects/ie.html). This work is published in [PLoS ONE](http://journals.plos.org/plosone/article?id=10.1371%2Fjournal.pone.0144147).
 
 ## Reproducible simulation study
 
@@ -20,7 +20,7 @@ The only data file is the primate phylogeny, `primates.nexus`, which provides th
 
 `Simulations.R` contains code to simulate the evolution of individual traits and pairs of correlated traits along the primate phylogeny according to a Brownian motion model. Simulation results are then processed so they are ready to analyze. 
 
-`Figures.R` contains code to visualize the results from `Simulations.R`. Running the simulations and processing the output takes around 10 minutes, and can be done with the following code (assuming your working directory is `Simulations_Study`):
+`Figures.R` contains code to visualize the results from `Simulations.R`. Running the simulations and processing the output takes around 10 minutes, and can be done with the following code (assuming the R folder is your working directory):
 
 ```
 source("Simulations.R")
