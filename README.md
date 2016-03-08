@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/20794/rgriff23/Evaluating_IE.svg)](https://zenodo.org/badge/latestdoi/20794/rgriff23/Evaluating_IE)
+
 # Evaluating the legitimacy of the Independent Evolution method
 
 [Randi H. Griffin](http://rgriff23.github.io/) and [Gabriel S. Yapuncich](http://www.gabrielyapuncich.com/)
