@@ -6,7 +6,7 @@
 
 ___
 
-This repository contains the data and code used to evaluate the legitimacy of IE using simulations. I also provide a synopsis of our study on my [website](http://rgriff23.github.io/projects/ie.html). This work is published in [PLoS ONE](http://journals.plos.org/plosone/article?id=10.1371%2Fjournal.pone.0144147).
+This repository contains the data and code used to evaluate the legitimacy of IE using simulations. This work is published in [PLoS ONE](http://journals.plos.org/plosone/article?id=10.1371%2Fjournal.pone.0144147).
 
 ## Reproducible simulation study
 
